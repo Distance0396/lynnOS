@@ -1,0 +1,671 @@
+/* ===== Somewhere.exe — Dreamcore Atmosphere (Phase 4) ===== */
+
+/* --- Film Grain Overlay --- */
+#film-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  animation: grain-shift 4s steps(6) infinite;
+}
+
+@keyframes grain-shift {
+  0% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(-5%, -3%);
+  }
+  40% {
+    transform: translate(3%, 5%);
+  }
+  60% {
+    transform: translate(-3%, 2%);
+  }
+  80% {
+    transform: translate(5%, -2%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* --- Vignette --- */
+#vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 75% 65% at 50% 48%,
+    transparent 50%,
+    rgba(30, 50, 80, 0.12) 80%,
+    rgba(20, 35, 60, 0.22) 100%
+  );
+}
+
+/* ===== Wallpaper Themes ===== */
+
+/* Theme 1: Bliss Blue (default) — uses real image */
+#desktop-root.theme-bliss #wallpaper {
+  background-image: url("../assets/bliss.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* Theme 2: Quiet Hallway — liminal corridor */
+#desktop-root.theme-hallway #wallpaper {
+  background:
+    radial-gradient(
+      ellipse 60% 80% at 50% 50%,
+      rgba(245, 244, 239, 0.4) 0%,
+      transparent 60%
+    ),
+    linear-gradient(
+      90deg,
+      #c8c4b4 0%,
+      #d5d2c5 15%,
+      #e8e6d8 30%,
+      #f5f4ef 45%,
+      #f5f4ef 55%,
+      #e8e6d8 70%,
+      #d5d2c5 85%,
+      #c8c4b4 100%
+    ),
+    linear-gradient(
+      180deg,
+      #b8b4a4 0%,
+      #c8c4b4 20%,
+      #d5d2c5 50%,
+      #c8c4b4 80%,
+      #a8a498 100%
+    );
+}
+
+/* Theme 3: Faded Afternoon — warm sepia sunset */
+#desktop-root.theme-faded #wallpaper {
+  background:
+    radial-gradient(
+      ellipse 90% 60% at 60% 40%,
+      rgba(255, 200, 120, 0.3) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 100% 50% at 50% 85%,
+      #8b7355 0%,
+      #6b5a42 40%,
+      transparent 70%
+    ),
+    linear-gradient(
+      180deg,
+      #d4a56a 0%,
+      #e8c088 20%,
+      #f0d8a8 35%,
+      #e8d0b0 50%,
+      #c8a880 65%,
+      #987858 80%,
+      #685040 100%
+    );
+}
+
+/* Theme 4: Dream Garden — teal dreamscape */
+#desktop-root.theme-garden #wallpaper {
+  background:
+    radial-gradient(
+      ellipse 70% 50% at 45% 40%,
+      rgba(168, 211, 232, 0.35) 0%,
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 110% 45% at 55% 80%,
+      #6b9b7a 0%,
+      #4a8868 35%,
+      transparent 65%
+    ),
+    linear-gradient(
+      175deg,
+      transparent 50%,
+      #7aaa88 58%,
+      #5a9a70 68%,
+      #3a8058 82%,
+      #2a6848 100%
+    ),
+    linear-gradient(
+      180deg,
+      #6baacc 0%,
+      #88c4d8 20%,
+      #a8d8e4 38%,
+      #b8e0d8 50%,
+      #a8d8c8 60%,
+      transparent 68%
+    );
+}
+
+/* Theme 5: Empty Room — quiet interior */
+#desktop-root.theme-room #wallpaper {
+  background:
+    radial-gradient(
+      ellipse 50% 60% at 65% 45%,
+      rgba(255, 242, 204, 0.35) 0%,
+      transparent 60%
+    ),
+    linear-gradient(
+      90deg,
+      #b8b0a0 0%,
+      #c8c0b0 25%,
+      #d8d0c0 50%,
+      #c8c0b0 75%,
+      #b8b0a0 100%
+    ),
+    linear-gradient(
+      180deg,
+      #a8a090 0%,
+      #c0b8a8 30%,
+      #d0c8b8 55%,
+      #c8c0b0 75%,
+      #a89888 100%
+    );
+}
+
+/* Wallpaper overlay per theme */
+#desktop-root.theme-hallway #wallpaper-overlay {
+  background:
+    radial-gradient(
+      ellipse 80% 70% at 50% 50%,
+      rgba(200, 196, 180, 0.1) 0%,
+      transparent 70%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(180, 176, 164, 0.08) 0%,
+      rgba(160, 156, 144, 0.12) 100%
+    );
+}
+
+#desktop-root.theme-faded #wallpaper-overlay {
+  background:
+    radial-gradient(
+      ellipse 90% 70% at 55% 45%,
+      rgba(255, 220, 160, 0.1) 0%,
+      transparent 65%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 200, 120, 0.06) 0%,
+      rgba(180, 140, 80, 0.08) 100%
+    );
+}
+
+#desktop-root.theme-garden #wallpaper-overlay {
+  background:
+    radial-gradient(
+      ellipse 100% 80% at 50% 50%,
+      rgba(167, 197, 178, 0.1) 0%,
+      transparent 70%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(168, 211, 232, 0.05) 0%,
+      rgba(167, 197, 178, 0.08) 100%
+    );
+}
+
+#desktop-root.theme-room #wallpaper-overlay {
+  background:
+    radial-gradient(
+      ellipse 60% 50% at 65% 45%,
+      rgba(255, 242, 204, 0.12) 0%,
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(200, 192, 176, 0.06) 0%,
+      rgba(168, 152, 136, 0.1) 100%
+    );
+}
+
+/* ===== Wallpaper Breathing Animation (enhanced) ===== */
+#desktop-root.theme-bliss #wallpaper {
+  animation: bliss-breathe 45s ease-in-out infinite alternate;
+}
+#desktop-root.theme-hallway #wallpaper {
+  animation: hallway-drift 55s ease-in-out infinite alternate;
+}
+#desktop-root.theme-faded #wallpaper {
+  animation: faded-glow 50s ease-in-out infinite alternate;
+}
+#desktop-root.theme-garden #wallpaper {
+  animation: garden-sway 48s ease-in-out infinite alternate;
+}
+#desktop-root.theme-room #wallpaper {
+  animation: room-light 60s ease-in-out infinite alternate;
+}
+
+@keyframes bliss-breathe {
+  0% {
+    background-position: center center;
+  }
+  100% {
+    background-position: 50.5% 49.7%;
+  }
+}
+
+@keyframes hallway-drift {
+  0% {
+    background-position:
+      0% 0%,
+      0% 0%,
+      0% 0%;
+  }
+  100% {
+    background-position:
+      0.8% 0.2%,
+      0.3% 0.6%,
+      0.5% 0.3%;
+  }
+}
+
+@keyframes faded-glow {
+  0% {
+    background-position:
+      0% 0%,
+      0% 0%,
+      0% 0%;
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.02);
+  }
+  100% {
+    background-position:
+      0.6% 0.4%,
+      0.4% 0.3%,
+      0.2% 0.5%;
+    filter: brightness(0.98);
+  }
+}
+
+@keyframes garden-sway {
+  0% {
+    background-position:
+      0% 0%,
+      0% 0%,
+      0% 0%,
+      0% 0%;
+  }
+  100% {
+    background-position:
+      0.7% 0.5%,
+      0.4% 0.3%,
+      0.5% 0.6%,
+      0.3% 0.4%;
+  }
+}
+
+@keyframes room-light {
+  0% {
+    background-position:
+      0% 0%,
+      0% 0%,
+      0% 0%;
+    filter: brightness(1);
+  }
+  100% {
+    background-position:
+      0.5% 0.3%,
+      0.3% 0.5%,
+      0.2% 0.4%;
+    filter: brightness(1.01);
+  }
+}
+
+/* ===== System Dialog (XP Style) ===== */
+#system-dialog-container {
+  position: absolute;
+  inset: 0;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+.sys-dialog {
+  position: absolute;
+  pointer-events: auto;
+  min-width: 320px;
+  max-width: 420px;
+  background: var(--win-bg);
+  border: 2px solid #0054e3;
+  border-radius: 6px 6px 0 0;
+  box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.4);
+  animation: win-open 180ms ease-out;
+  font-family: var(--font-system);
+}
+
+.sys-dialog.closing {
+  animation: win-close 140ms ease-in forwards;
+}
+
+.sys-dialog-titlebar {
+  height: 28px;
+  display: flex;
+  align-items: center;
+  padding: 0 4px 0 6px;
+  background: linear-gradient(
+    180deg,
+    #6ea2f5 0%,
+    var(--titlebar-light) 4%,
+    var(--xp-blue) 40%,
+    var(--titlebar-dark) 85%,
+    #0e3e9e 100%
+  );
+  border-radius: 4px 4px 0 0;
+  position: relative;
+}
+
+.sys-dialog-titlebar::before {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  right: 1px;
+  height: 40%;
+  border-radius: 3px 3px 0 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
+}
+
+.sys-dialog-title {
+  flex: 1;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  padding: 0 4px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.sys-dialog-icon {
+  font-size: 14px;
+  margin-right: 4px;
+}
+
+.sys-dialog-close {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.35) 0%,
+    rgba(255, 255, 255, 0.1) 40%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.sys-dialog-close:hover {
+  background: linear-gradient(180deg, #e8836a 0%, #d5524a 50%, #c03028 100%);
+}
+
+.sys-dialog-body {
+  padding: 16px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.sys-dialog-img {
+  font-size: 32px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.sys-dialog-text {
+  flex: 1;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.sys-dialog-actions {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 20px 14px;
+}
+
+/* Override XP.css global button styles for system dialog */
+.sys-dialog-actions button {
+  min-width: 75px;
+}
+
+.sys-dialog-actions button:focus {
+  box-shadow:
+    inset -1px 1px #cee7ff,
+    inset 1px 2px #98b8ea,
+    inset -2px 2px #bcd4f6,
+    inset 1px -1px #89ade4,
+    inset 2px -2px #89ade4;
+}
+
+/* ===== Clock Panel ===== */
+#clock-panel {
+  position: absolute;
+  bottom: calc(var(--taskbar-h) + 4px);
+  right: 4px;
+  width: 200px;
+  z-index: 9500;
+  background: var(--win-bg);
+  border: 2px solid #0054e3;
+  border-radius: 6px;
+  box-shadow: 2px -2px 10px rgba(0, 0, 0, 0.3);
+  padding: 14px 16px;
+  font-family: var(--font-system);
+  animation: menu-fade-in 150ms ease-out;
+}
+
+#clock-panel[hidden] {
+  display: none;
+}
+
+.clock-time {
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--xp-blue);
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.clock-date {
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: 4px;
+}
+
+.clock-separator {
+  height: 1px;
+  background: #d5d2c5;
+  margin: 10px 0;
+}
+
+.clock-dream {
+  font-size: 11px;
+  color: var(--dream-gray-blue);
+  text-align: center;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* ===== Photo Vintage Effect ===== */
+.photo-vintage {
+  position: relative;
+  overflow: hidden;
+}
+
+.photo-vintage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 242, 204, 0.12) 0%,
+    transparent 50%,
+    rgba(120, 100, 80, 0.08) 100%
+  );
+  mix-blend-mode: multiply;
+}
+
+/* ===== Settings Window Enhanced ===== */
+.settings-section {
+  margin-bottom: 16px;
+}
+
+.settings-section h4 {
+  font-size: 13px;
+  color: var(--xp-blue);
+  border-bottom: 1px solid #d5d2c5;
+  padding-bottom: 4px;
+  margin-bottom: 8px;
+}
+
+.settings-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 0;
+  font-size: 13px;
+}
+
+.settings-row input[type="checkbox"],
+.settings-row input[type="radio"] {
+  accent-color: var(--xp-blue);
+}
+
+.wallpaper-preview {
+  width: 64px;
+  height: 40px;
+  border: 2px solid #d5d2c5;
+  border-radius: 2px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.wallpaper-preview:hover {
+  border-color: var(--xp-blue);
+}
+
+.wallpaper-preview.active {
+  border-color: var(--xp-blue);
+  box-shadow: 0 0 0 2px rgba(36, 94, 219, 0.3);
+}
+
+.wp-bliss {
+  background: linear-gradient(
+    180deg,
+    #5b9bd5 0%,
+    #8ec8eb 40%,
+    #8dc07a 70%,
+    #4e9144 100%
+  );
+}
+.wp-hallway {
+  background: linear-gradient(90deg, #c8c4b4 0%, #f5f4ef 50%, #c8c4b4 100%);
+}
+.wp-faded {
+  background: linear-gradient(180deg, #d4a56a 0%, #f0d8a8 40%, #987858 100%);
+}
+.wp-garden {
+  background: linear-gradient(
+    180deg,
+    #6baacc 0%,
+    #a8d8e4 40%,
+    #5a9a70 70%,
+    #2a6848 100%
+  );
+}
+.wp-room {
+  background: linear-gradient(180deg, #a8a090 0%, #d0c8b8 50%, #a89888 100%);
+}
+
+/* ===== Desktop Icons Hide ===== */
+#desktop-root.icons-hidden #desktop-icons {
+  display: none;
+}
+
+/* ===== Animations Disabled ===== */
+#desktop-root.no-animations #wallpaper {
+  animation: none !important;
+}
+#desktop-root.no-animations .window {
+  animation: none !important;
+}
+#desktop-root.no-animations #start-menu {
+  animation: none !important;
+}
+#desktop-root.no-animations #film-grain {
+  animation: none !important;
+}
+#desktop-root.no-animations .sys-dialog {
+  animation: none !important;
+}
+
+/* ===== Light Leak (subtle animated glow) ===== */
+#desktop-root::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 40% 30% at 60% 35%,
+    rgba(255, 255, 230, 0.06) 0%,
+    transparent 100%
+  );
+  animation: light-leak 35s ease-in-out infinite alternate;
+}
+
+@keyframes light-leak {
+  0% {
+    opacity: 0.6;
+    transform: translate(0, 0);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+    transform: translate(2%, 1%);
+  }
+}
+
+#desktop-root.no-animations::after {
+  animation: none !important;
+}
+
+/* ===== Responsive: reduce effects on mobile ===== */
+@media (max-width: 768px) {
+  #film-grain {
+    opacity: 0.02;
+  }
+  #vignette {
+    opacity: 0.6;
+  }
+}

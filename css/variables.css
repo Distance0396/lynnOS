@@ -1,0 +1,49 @@
+/* ===== Somewhere.exe — Color & Font Variables ===== */
+:root {
+  /* XP Blues */
+  --xp-blue: #245edb;
+  --titlebar-light: #3b8cf0;
+  --titlebar-dark: #1555b5;
+  --taskbar-blue: #245edb;
+  --taskbar-highlight: #4d9ae8;
+  --start-green: #36a839;
+  --start-green-dark: #2d8f30;
+  --select-blue: #316ac5;
+
+  /* System Surfaces */
+  --win-bg: #ece9d8;
+  --content-bg: #f5f4ef;
+  --paper-white: #f3f0e6;
+
+  /* Dreamcore Palette */
+  --dream-blue: #a8d3e8;
+  --dream-gray-blue: #7d93ac;
+  --dream-teal: #a7c5b2;
+  --dream-grass: #b9d9a0;
+  --dream-warm: #fff2cc;
+
+  /* Text */
+  --text-primary: #303846;
+  --text-secondary: #667487;
+  --text-white: #ffffff;
+  --text-icon: #ffffff;
+
+  /* Window Chrome */
+  --titlebar-h: 30px;
+  --win-radius: 5px 5px 0 0;
+  --win-border: 1px solid #0054e3;
+  --win-shadow: 2px 2px 8px rgba(0, 0, 0, 0.35);
+
+  /* Taskbar */
+  --taskbar-h: 40px;
+
+  /* Fonts — authentic Windows XP: Tahoma (Latin) + SimSun 宋体 (Chinese) */
+  --font-system: Tahoma, "SimSun", "宋体", "NSimSun", sans-serif;
+  --font-mono: "Courier New", Consolas, monospace;
+  --fs-icon: 12px;
+  --fs-title: 12px;
+  --fs-body: 13px;
+  --fs-article: 16px;
+  --fs-heading: 26px;
+  --fs-tray: 11px;
+}

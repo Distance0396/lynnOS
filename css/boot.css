@@ -1,0 +1,218 @@
+/* ===== boot.css — Windows XP Boot Sequence ===== */
+
+#boot-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+#boot-overlay.visible { opacity: 1; }
+#boot-overlay.fading { opacity: 0; }
+
+/* ==============================
+   Phase 1: Black boot screen
+   ============================== */
+.boot-screen {
+  position: absolute;
+  inset: 0;
+  background: #000;
+}
+
+.boot-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -58%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.boot-flag {
+  width: 96px;
+  height: 90px;
+  margin-bottom: 14px;
+}
+
+.boot-wordmark {
+  font-family: 'Franklin Gothic Medium', 'Segoe UI', Tahoma, sans-serif;
+  color: #d4d4d4;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+.boot-wordmark sup { font-size: 0.55em; }
+.boot-wordmark .bwm-win { font-size: 22px; color: #e8e8e8; }
+.boot-wordmark .bwm-xp {
+  position: relative;
+  font-size: 22px;
+  font-weight: 700;
+  color: #e8e8e8;
+}
+/* orange swoosh underline under "XP" */
+.boot-wordmark .bwm-xp::after {
+  content: '';
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  bottom: -6px;
+  height: 8px;
+  border-bottom: 3px solid #f58634;
+  border-radius: 0 0 50% 50% / 0 0 100% 100%;
+}
+
+.boot-edition {
+  margin-top: 14px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  color: #9a9a9a;
+  font-size: 13px;
+}
+
+/* progress bar */
+.boot-progress {
+  position: absolute;
+  top: calc(50% + 96px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 158px;
+  height: 16px;
+  border: 2px solid #8b8b8b;
+  border-radius: 9px;
+  background: #050505;
+  overflow: hidden;
+  box-shadow: inset 0 0 4px #000;
+}
+.boot-progress-blocks {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  display: flex;
+  gap: 5px;
+  will-change: transform, opacity;
+}
+.boot-progress-blocks i {
+  display: block;
+  width: 9px;
+  height: 8px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #e2f2fa 0%, #aed6ea 45%, #82badb 100%);
+  box-shadow: 0 0 4px rgba(170, 215, 240, 0.85);
+}
+
+.boot-copyright {
+  position: absolute;
+  left: 18px;
+  bottom: 16px;
+  color: #8f8f8f;
+  font-family: Tahoma, sans-serif;
+  font-size: 11px;
+}
+
+/* ==============================
+   Phase 2: Welcome screen
+   ============================== */
+.boot-welcome {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: linear-gradient(180deg,
+    #0a2a86 0%, #24449f 14%, #5779d4 38%, #93aae9 50%,
+    #5779d4 62%, #1d3c96 86%, #071f6b 100%);
+}
+/* top dark band with curved bottom edge */
+.boot-welcome::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -5%;
+  right: -5%;
+  height: 84px;
+  background: linear-gradient(180deg, #06206e, #0a2c8e);
+  border-bottom-left-radius: 50% 38px;
+  border-bottom-right-radius: 50% 38px;
+  box-shadow: 0 2px 6px rgba(0, 0, 20, 0.35);
+}
+/* bottom dark band with curved top edge */
+.boot-welcome::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -5%;
+  right: -5%;
+  height: 84px;
+  background: linear-gradient(0deg, #06206e, #0a2c8e);
+  border-top-left-radius: 50% 38px;
+  border-top-right-radius: 50% 38px;
+  box-shadow: 0 -2px 6px rgba(0, 0, 20, 0.35);
+}
+
+.bw-logo {
+  position: absolute;
+  top: 26px;
+  right: 42px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-family: 'Franklin Gothic Medium', 'Segoe UI', Tahoma, sans-serif;
+  font-size: 15px;
+  white-space: nowrap;
+}
+.bw-logo sup { font-size: 0.55em; }
+.bw-flag {
+  width: 26px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+}
+
+.bw-center {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 16%;
+}
+.bw-text {
+  color: #fff;
+  font-size: 64px;
+  font-weight: 700;
+  font-family: SimSun, '宋体', serif;
+  letter-spacing: 8px;
+  text-shadow: 0 0 26px rgba(255, 255, 255, 0.55), 0 0 8px rgba(255, 255, 255, 0.4);
+}
+.bw-text.loading {
+  font-size: 26px;
+  letter-spacing: 2px;
+  font-weight: 400;
+  font-family: Tahoma, SimSun, sans-serif;
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.45);
+}
+
+.bw-footer {
+  position: absolute;
+  bottom: 22px;
+  left: 36px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-family: Tahoma, SimSun, sans-serif;
+  font-size: 14px;
+}
+.bw-power {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ff9a8a, #d63c2a 70%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.4), inset 0 0 3px rgba(255, 255, 255, 0.5);
+}
