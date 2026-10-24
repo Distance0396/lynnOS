@@ -24,3 +24,15 @@ export const BOOT_TIMING = {
 
 /* --- Initial z-index --- */
 export const INITIAL_Z = 200;
+
+/* --- Viewport: ≤768px 时窗口强制最大化、禁用拖拽缩放 --- */
+export const NARROW_BREAKPOINT = 768;
+
+/* --- Window close: CSS 动画 140ms，130ms 后提交移除 --- */
+export const CLOSE_REMOVE_DELAY_MS = 130;
+
+/* --- Resize handles（与 windows.css 的 .resize-* 类一一对应）--- */
+export const RESIZE_DIRECTIONS = ['n', 's', 'e', 'w', 'ne', 'nw', 'se', 'sw'] as const;
+
+/* --- 合法壁纸 id（对应 atmosphere.css 的 theme-* 类）--- */
+export const VALID_WALLPAPERS = ['bliss', 'hallway', 'faded', 'garden', 'room'] as const;
