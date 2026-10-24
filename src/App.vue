@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useSettingsStore } from './stores/settings';
-import { useWindowsStore } from './stores/windows';
 import { useDialogsStore } from './stores/dialogs';
 import { DESKTOP_ICONS, openApp } from './apps/registry';
 import { useSound } from './composables/useSound';
@@ -17,7 +16,6 @@ import SystemDialog from './components/common/SystemDialog.vue';
 
 // 桌面壳是容器组件：直接访问 store 与 composables
 const settings = useSettingsStore();
-const windowsStore = useWindowsStore();
 const dialogs = useDialogsStore();
 const sound = useSound();
 
@@ -41,10 +39,9 @@ escape.push(() => {
 });
 escape.push(() => dialogs.closeTop());
 
-// 开机完成后打开欢迎窗（时序与旧 initDesktop 一致）
+// 开机完成：只播启动音效（受 soundEnabled 门控），不自动打开窗口
 function onBootFinished() {
   bootComplete.value = true;
-  openApp('welcome');
   setTimeout(() => sound.startup(), 300);
 }
 
@@ -69,12 +66,6 @@ function onMenuSelect(appId: string) {
 function onAllPrograms() {
   startMenuOpen.value = false;
   openApp('my-computer');
-}
-
-function onHome() {
-  startMenuOpen.value = false;
-  windowsStore.closeAll();
-  openApp('welcome');
 }
 
 function onSleep() {
@@ -121,7 +112,6 @@ function onSleep() {
       v-if="startMenuOpen"
       @select="onMenuSelect"
       @all-programs="onAllPrograms"
-      @home="onHome"
       @sleep="onSleep"
     />
 

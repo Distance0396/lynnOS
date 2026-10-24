@@ -56,15 +56,6 @@ describe('close', () => {
     expect(store.windows.length).toBe(0);
     expect(store.activeId).toBeNull();
   });
-
-  it('closeAll clears every window at once', () => {
-    const store = useWindowsStore();
-    store.open({ id: 'a', title: 'A' });
-    store.open({ id: 'b', title: 'B' });
-    store.closeAll();
-    expect(store.windows.length).toBe(0);
-    expect(store.activeId).toBeNull();
-  });
 });
 
 describe('minimize', () => {

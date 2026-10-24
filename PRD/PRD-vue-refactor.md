@@ -9,6 +9,8 @@
 | 取代关系 | 取代 PRD-engineering-hygiene.md 的 H2~H5；其 H1（仓库卫生）并入本 PRD V1 阶段 |
 | 执行前置 | 开始任何 UI 改造前，必须先阅读 `skills/windows-xp-ui/SKILL.md`（项目最高优先级 UI 规则） |
 
+> **范围变更（2026-10-25，用户决策）**：应用保留范围从 13 个裁剪为 4 个——**关于我、留言板、我的电脑、回收站**；其余应用（welcome、文章档案、我的博客、照片记忆、音乐收藏、技术笔记、系统设置）连同其桌面图标与开始菜单条目一并移除。配套决策：开机后**不自动打开任何窗口**（干净桌面）；开始菜单「返回欢迎页」按钮**移除**（底部仅留「进入睡眠」）。V4 阶段仅迁移上述 4 个应用；legacy.html 保持 13 应用全量不变（作为 4 个保留应用的截图对比基准），V5 整体删除。
+
 ---
 
 ## 1. 背景与决策
@@ -132,7 +134,7 @@ src/
 | `core/atmosphere.ts`（408 行大杂烩） | `useSound` / `useClock` / `SystemDialog.vue` / `SleepOverlay.vue` / settings store 持久化；`RECYCLE_MEMORIES` 归入 `apps/recycle-bin/` |
 | `core/boot.ts` | `useBoot.ts` + `BootOverlay.vue` |
 | `apps/chrome.ts`（XP 窗口骨架） | `components/common/XpChrome.vue`（slots：sidebar / content / statusbar） |
-| `apps/registry.ts` + 13 个应用文件 | `apps/registry.ts`（纯数据映射）+ 每应用目录 |
+| `apps/registry.ts` + 13 个应用文件 | `apps/registry.ts`（纯数据映射，含 component 字段）+ 4 个保留应用目录；其余应用随 legacy 一并删除 |
 | `data/`、`constants/`、`styles/` | 原样保留 |
 
 **与 XP 主题的兼容策略**：全部 CSS 文件零改动；组件模板必须逐字保留 `xp-theme.css`/`windows.css` 所依赖的 class 名与 DOM 层级（`window` / `title-bar` / `title-bar-text` / `xp-menubar` 等）。Vue 只改变「DOM 由谁生成」，不改变「生成什么」。
@@ -160,7 +162,7 @@ src/
 | V1 | 基建与卫生 | 依赖安装与脚本（`lint`/`vue-tsc`）；tsconfig 纳入 `.vue`；ESLint 配置；目录骨架；双入口跑通空 Vue 应用；**吸收原 H1**：`.gitattributes`+renormalize（单独 commit）、删除根目录 `assets/`、删除 `iconPositions`、`vite.config.ts` 增加 `base: process.env.BASE_PATH ?? '/'`、移除 `xp.css` 死依赖 | 无 |
 | V2 | 状态层与窗口系统 | `stores/windows.ts`（开/关/最小化/最大化/激活/z 序/单例）+ 单测；`stores/settings.ts` + 持久化；`WindowFrame.vue`（XP 窗口壳、控制按钮、8 向 resize 手柄）；`useWindowDrag`/`useWindowResize`/`useViewport`/`utils/geometry.ts` + 纯函数单测 | V1 |
 | V3 | 桌面壳 | `App.vue`（壁纸/胶片颗粒/暗角层）；`BootOverlay.vue`+`useBoot`；桌面图标区；`Taskbar`/`TaskButton`/`StartMenu`/`SystemTray`+`useClock`；`SystemDialog.vue`/`ClockPanel.vue`/`SleepOverlay.vue`；`useSound`；`useEscapeStack`。至此新壳可在 `index.html` 完整运行（应用先以占位内容渲染） | V2 |
-| V4 | 应用迁移（一应用一 commit） | `XpChrome.vue`；按依赖顺序迁移 13 个应用：welcome → article-archive → my-blog → tech-notes → about-me → guestbook（store+表单校验）→ photo-memory（`usePhotoViewer`）→ music-collection（`usePlayer`，样板先行评审）→ my-computer → recycle-bin → settings；静态应用不强制建 composable | V3 |
+| V4 | 应用迁移（一应用一 commit） | `XpChrome.vue`（菜单栏/工具栏/地址栏/侧栏/状态栏，空侧栏保持 180px 视觉）；**仅迁移保留的 4 个应用**：about-me（静态模板化）、guestbook（guestbook store + 表单校验）、my-computer（侧栏/内容项同步裁剪至保留应用）、recycle-bin（记忆彩蛋迁入组件，走 dialogs store）；注册表补 `component` 字段，WindowLayer 按 `:is` 渲染；同步裁剪桌面图标（3 个）与开始菜单条目；删除 `closeAll` 及「返回欢迎页」按钮 | V3 |
 | V5 | 收尾与验收 | 删除 `legacy.html` 与旧渲染代码（`core/`、旧 `apps/*.ts`）；基础可访问性（图标/菜单 button 语义、Enter/Space/Esc，吸收原 H3）；全量测试、lint 清零、构建产物检查；截图回归报告；更新 CLAUDE.md 技术栈描述与 README | V4 |
 
 实施顺序严格串行：V1 → V2 → V3 → V4 → V5；V4 内每应用独立 commit，截图对比通过才允许进入下一个。
@@ -169,7 +171,7 @@ src/
 
 ## 4. 验收标准
 
-- [ ] **视觉零回归**：13 个应用 + 开机流程 + 桌面/任务栏/开始菜单/对话框，新旧截图逐屏对比一致（报告附于合并 PR）
+- [ ] **视觉零回归**：4 个保留应用 + 开机流程 + 桌面/任务栏/开始菜单/对话框，与 legacy 对应窗口截图逐屏对比一致（报告附于合并 PR）
 - [ ] **单向流检查清单全过**：无组件直接写 store state；无 props mutation（lint 强制）；通用展示组件零 store import（grep `components/` 下 `useWindowsStore\|useSettingsStore` 应为 0 命中）
 - [ ] `npm run lint`、`npm run build`（含 `vue-tsc`）全绿
 - [ ] 测试全绿且覆盖：windows/settings/guestbook store、geometry 纯函数、useBoot 状态机、usePlayer、`WindowFrame`/`StartMenu` 挂载测试

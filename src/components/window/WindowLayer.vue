@@ -1,15 +1,20 @@
 <script setup lang="ts">
+import { APPS } from '../../apps/registry';
 import { useWindowsStore } from '../../stores/windows';
 import { useSound } from '../../composables/useSound';
 import WindowFrame from './WindowFrame.vue';
 
-// 容器组件：把 WindowFrame 的事件转接到 windows store
+// 容器组件：把 WindowFrame 的事件转接到 windows store，并按注册表渲染应用组件
 const store = useWindowsStore();
 const sound = useSound();
 
 function onClose(winId: string) {
   sound.close();
   store.close(winId);
+}
+
+function appDef(appId: string) {
+  return APPS[appId];
 }
 </script>
 
@@ -20,14 +25,15 @@ function onClose(winId: string) {
       :key="w.id"
       :win="w"
       :active="w.id === store.activeId"
+      :body-class="appDef(w.appId)?.bodyClass"
       @activate="store.activate(w.id)"
       @close="onClose(w.id)"
       @minimize="store.minimize(w.id)"
       @toggle-maximize="store.toggleMaximize(w.id)"
       @commit-bounds="bounds => store.commitBounds(w.id, bounds)"
     >
-      <!-- V4 起替换为真实应用组件 -->
-      <div class="app-placeholder">{{ w.title }} 的内容将在 V4 迁移</div>
+      <component :is="appDef(w.appId)?.component" v-if="appDef(w.appId)" />
+      <div v-else class="app-placeholder">未知应用：{{ w.appId }}</div>
     </WindowFrame>
   </div>
 </template>

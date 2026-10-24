@@ -7,7 +7,7 @@ import { useWindowDrag } from '../../composables/useWindowDrag';
 import { useWindowResize } from '../../composables/useWindowResize';
 import type { WindowState } from '../../stores/windows';
 
-const props = defineProps<{ win: WindowState; active: boolean }>();
+const props = defineProps<{ win: WindowState; active: boolean; bodyClass?: string }>();
 
 const emit = defineEmits<{
   activate: [];
@@ -120,7 +120,7 @@ function onHandleMousedown(e: MouseEvent, dir: string) {
       </div>
     </div>
 
-    <div class="window-body">
+    <div class="window-body" :class="bodyClass">
       <slot />
     </div>
 

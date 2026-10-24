@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { START_MENU_LEFT, START_MENU_RIGHT, type StartMenuItem } from '../../apps/registry';
 
-const emit = defineEmits<{ select: [appId: string]; 'all-programs': []; home: []; sleep: [] }>();
+const emit = defineEmits<{ select: [appId: string]; 'all-programs': []; sleep: [] }>();
 
 function onSelect(item: StartMenuItem) {
   if (item.appId) emit('select', item.appId);
@@ -48,9 +48,6 @@ function onSelect(item: StartMenuItem) {
       </div>
     </div>
     <div id="start-menu-bottom">
-      <button class="start-bottom-btn" @click="emit('home')">
-        <img src="/assets/icons/xp/16/users-group.png" alt=""> 返回欢迎页
-      </button>
       <button class="start-bottom-btn" @click="emit('sleep')">
         <img src="/assets/icons/xp/16/shutdown.png" alt=""> 进入睡眠
       </button>
