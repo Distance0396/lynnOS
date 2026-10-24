@@ -1,0 +1,131 @@
+/* ===== Desktop Root & Wallpaper ===== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-system);
+  font-size: var(--fs-body);
+  color: var(--text-primary);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#desktop-root {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* --- Wallpaper: real Bliss image --- */
+#wallpaper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url("/assets/bliss.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  animation: wallpaper-breathe 45s ease-in-out infinite alternate;
+}
+
+#wallpaper-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(
+      ellipse 100% 80% at 50% 50%,
+      rgba(168, 211, 232, 0.06) 0%,
+      transparent 70%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 242, 204, 0.03) 0%,
+      rgba(167, 197, 178, 0.04) 100%
+    );
+  pointer-events: none;
+}
+
+/* --- Desktop Icons Area --- */
+#desktop-icons {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  bottom: calc(var(--taskbar-h) + 8px);
+  width: 264px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 4px;
+}
+
+.desktop-icon {
+  width: 82px;
+  height: 88px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 6px 4px;
+  border-radius: 3px;
+  cursor: default;
+  border: 1px solid transparent;
+}
+
+.desktop-icon:hover {
+  background: rgba(49, 106, 197, 0.12);
+  border-color: rgba(49, 106, 197, 0.25);
+}
+
+.desktop-icon.selected {
+  background: rgba(49, 106, 197, 0.3);
+  border-color: rgba(49, 106, 197, 0.55);
+}
+
+.desktop-icon .icon-img {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.35));
+}
+
+.desktop-icon .icon-img img {
+  width: 36px;
+  height: 36px;
+  image-rendering: auto;
+}
+
+.desktop-icon .icon-label {
+  font-size: var(--fs-icon);
+  color: var(--text-icon);
+  text-align: center;
+  line-height: 1.25;
+  max-width: 74px;
+  word-break: break-word;
+  text-shadow:
+    1px 1px 2px rgba(0, 0, 0, 0.7),
+    0 0 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Prevent text selection on desktop */
+#desktop-icons,
+#window-container {
+  user-select: none;
+  -webkit-user-select: none;
+}

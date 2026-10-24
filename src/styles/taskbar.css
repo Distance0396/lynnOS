@@ -1,0 +1,499 @@
+﻿/* ===== XP Luna Taskbar ===== */
+
+/* Override XP.css global button styles for taskbar */
+#taskbar button {
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  font-family: var(--font-system);
+}
+
+#taskbar button:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+#taskbar button:hover {
+  box-shadow: none;
+}
+
+#taskbar button:active {
+  box-shadow: none;
+}
+#taskbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--taskbar-h);
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #2468e8 0%,
+    #2460e0 1%,
+    #2058d8 3%,
+    #1c50d0 8%,
+    #1a48c8 15%,
+    #1844c0 30%,
+    #1640b8 50%,
+    #143cb0 70%,
+    #1238a8 85%,
+    #1034a0 95%,
+    #0e3098 100%
+  );
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* --- Start Button (Luna Green) --- */
+#start-btn {
+  height: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+}
+
+#start-btn img {
+  display: block;
+  height: 100%;
+  width: auto;
+}
+
+#start-btn:hover img {
+  filter: brightness(1.12);
+}
+
+#start-btn:active img,
+#start-btn.active img {
+  filter: brightness(0.82);
+}
+
+/* --- Task Buttons Area --- */
+#task-buttons {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px 4px;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.task-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+  min-width: 120px;
+  max-width: 180px;
+  padding: 0 8px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+  background: linear-gradient(
+    180deg,
+    rgba(60, 130, 240, 0.35) 0%,
+    rgba(40, 100, 220, 0.25) 30%,
+    rgba(20, 70, 190, 0.2) 60%,
+    rgba(10, 50, 160, 0.25) 100%
+  );
+  color: white;
+  font-size: 11px;
+  font-family: var(--font-system);
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  flex-shrink: 1;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.08);
+}
+
+.task-btn:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(80, 150, 255, 0.4) 0%,
+    rgba(60, 120, 240, 0.3) 30%,
+    rgba(40, 90, 210, 0.25) 60%,
+    rgba(30, 70, 190, 0.3) 100%
+  );
+}
+
+.task-btn.active {
+  background: linear-gradient(
+    180deg,
+    rgba(10, 50, 160, 0.3) 0%,
+    rgba(10, 50, 160, 0.2) 30%,
+    rgba(30, 70, 190, 0.15) 60%,
+    rgba(50, 100, 220, 0.2) 100%
+  );
+  border-color: rgba(0, 0, 0, 0.3);
+  box-shadow:
+    inset 0 1px 3px rgba(0, 0, 0, 0.2),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.task-btn .task-icon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.task-btn .task-icon img {
+  width: 14px;
+  height: 14px;
+}
+
+.task-btn .task-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* --- System Tray --- */
+#system-tray {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px;
+  height: 100%;
+  flex-shrink: 0;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(
+    180deg,
+    rgba(50, 120, 230, 0.2) 0%,
+    rgba(30, 80, 200, 0.15) 30%,
+    rgba(15, 55, 170, 0.2) 60%,
+    rgba(10, 40, 150, 0.25) 100%
+  );
+  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.06);
+}
+
+.tray-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  opacity: 0.9;
+}
+
+.tray-icon img {
+  width: 16px;
+  height: 16px;
+  image-rendering: auto;
+}
+
+.tray-icon:hover {
+  opacity: 1;
+}
+
+#tray-clock {
+  color: white;
+  font-size: var(--fs-tray);
+  font-family: var(--font-system);
+  min-width: 42px;
+  text-align: center;
+  cursor: default;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Start Menu (authentic Windows XP Luna) --- */
+#start-menu {
+  position: absolute;
+  bottom: var(--taskbar-h);
+  left: 0;
+  width: 380px;
+  z-index: 9500;
+  background: #fff;
+  border: 1px solid #0831d9;
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 4px -3px 16px rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: menu-fade-in 150ms ease-out;
+}
+
+#start-menu[hidden] {
+  display: none;
+}
+
+/* Header banner: blue gradient, username left + avatar right */
+.start-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  height: 56px;
+  padding: 0 10px 0 12px;
+  background: linear-gradient(
+    180deg,
+    #1c5cc8 0%,
+    #2a74de 6%,
+    #1c5cc8 45%,
+    #1450b0 100%
+  );
+  border-radius: 6px 6px 0 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.start-header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.28),
+    rgba(255, 255, 255, 0)
+  );
+  pointer-events: none;
+}
+
+.start-username {
+  color: #fff;
+  font-weight: bold;
+  font-size: 15px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.55);
+  z-index: 1;
+}
+
+.start-avatar {
+  width: 42px;
+  height: 42px;
+  background: #fff;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.start-avatar img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+
+/* Two-column body */
+.start-body {
+  display: flex;
+  align-items: stretch;
+}
+
+.start-col-left {
+  flex: 1;
+  background: #fff;
+  border-right: 1px solid #a6b9d5;
+  padding: 4px 0 0 0;
+}
+
+.start-col-right {
+  width: 178px;
+  background: linear-gradient(180deg, #d6e7fb 0%, #c3daf5 40%, #b4d0f0 100%);
+  padding: 4px 0 0 0;
+}
+
+#start-menu-left,
+#start-menu-right {
+  padding: 2px 0;
+}
+
+/* Generic item row */
+.start-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  cursor: default;
+  font-size: 12px;
+  color: #1f3065;
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
+
+.start-item .si-icon {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.start-item .si-icon img {
+  width: 24px;
+  height: 24px;
+}
+
+.start-item .si-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Left column items */
+#start-menu-left .start-item {
+  color: #222;
+  margin: 0 3px;
+}
+
+#start-menu-left .start-item.bold .si-label {
+  font-weight: bold;
+}
+
+#start-menu-left .start-item:hover {
+  background: linear-gradient(180deg, #2b74de 0%, #1c5cc8 100%);
+  color: #fff;
+  border-color: #1c58a8;
+}
+
+/* Right column items */
+#start-menu-right .start-item {
+  color: #1f3065;
+  font-weight: bold;
+  margin: 0 3px;
+  padding: 3px 10px;
+}
+
+#start-menu-right .start-item .si-icon {
+  width: 22px;
+  height: 22px;
+}
+
+#start-menu-right .start-item .si-icon img {
+  width: 20px;
+  height: 20px;
+}
+
+#start-menu-right .start-item:hover {
+  background: linear-gradient(180deg, #6fa4ec 0%, #3c78d8 100%);
+  color: #fff;
+  border-color: #2c68c8;
+}
+
+/* Separators */
+.start-hsep {
+  height: 1px;
+  background: #b6baa5;
+  margin: 4px 8px;
+}
+
+.start-vsep {
+  height: 1px;
+  background: #a6b9d5;
+  margin: 4px 10px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* All Programs row */
+.start-allprograms {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  margin: 0 3px 3px 3px;
+  cursor: default;
+  font-size: 12px;
+  font-weight: bold;
+  color: #222;
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
+
+.start-allprograms .ap-icon {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.start-allprograms .ap-icon img {
+  width: 24px;
+  height: 24px;
+}
+
+.start-allprograms .ap-label {
+  flex: 1;
+}
+
+.start-allprograms .ap-arrow {
+  font-size: 10px;
+  color: #1f3065;
+}
+
+.start-allprograms:hover {
+  background: linear-gradient(180deg, #2b74de 0%, #1c5cc8 100%);
+  color: #fff;
+  border-color: #1c58a8;
+}
+
+.start-allprograms:hover .ap-arrow {
+  color: #fff;
+}
+
+/* Footer bar */
+#start-menu-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  background: linear-gradient(180deg, #3d71e8 0%, #2860d0 45%, #1c50b8 100%);
+  border-top: 1px solid #5b93f0;
+}
+
+.start-bottom-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  font-size: 11px;
+  font-family: var(--font-system);
+  border: 1px solid transparent;
+  border-radius: 3px;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  min-width: 0;
+  min-height: 0;
+  box-shadow: none;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+.start-bottom-btn img {
+  width: 16px;
+  height: 16px;
+}
+
+.start-bottom-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: none;
+}
+
+.start-bottom-btn:active,
+.start-bottom-btn:focus {
+  box-shadow: none;
+  outline: none;
+}

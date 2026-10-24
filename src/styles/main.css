@@ -1,0 +1,9 @@
+/* ===== main.css — All styles imported in order ===== */
+@import './xp-theme.css';
+@import './variables.css';
+@import './boot.css';
+@import './desktop.css';
+@import './windows.css';
+@import './taskbar.css';
+@import './atmosphere.css';
+@import './animations.css';
