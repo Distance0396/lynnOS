@@ -1,6 +1,6 @@
 // @ts-nocheck
 /* ===== apps/photo-memory.ts ===== */
-import { Apps } from './registry';
+import { Apps } from './legacy-registry';
 import { XPChrome } from './chrome';
 import { DesktopState } from '../core/state';
 import { WindowManager } from '../core/window-manager';

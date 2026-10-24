@@ -1,6 +1,6 @@
 /* ===== desktop.ts — Desktop Icons & Interactions ===== */
 import { DesktopState } from './state';
-import { Apps } from '../apps/registry';
+import { Apps } from '../apps/legacy-registry';
 
 const ICONS = [
   { id: 'about-me',         label: '关于我',    icon: 'assets/icons/xp/32/user-key.png',          app: 'about-me' },

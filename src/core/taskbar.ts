@@ -1,6 +1,6 @@
 /* ===== taskbar.ts — Taskbar, Start Menu, Clock ===== */
 import { DesktopState } from './state';
-import { Apps } from '../apps/registry';
+import { Apps } from '../apps/legacy-registry';
 import { Desktop } from './desktop';
 import { WindowManager } from './window-manager';
 import { Atmosphere } from './atmosphere';

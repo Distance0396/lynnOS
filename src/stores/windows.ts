@@ -103,6 +103,12 @@ export const useWindowsStore = defineStore('windows', () => {
     if (activeId.value === id) activeId.value = topUnminimized()?.id ?? null;
   }
 
+  // 一键关闭全部窗口（开始菜单「返回欢迎页」）
+  function closeAll() {
+    windows.value = [];
+    activeId.value = null;
+  }
+
   function minimize(id: string) {
     const win = windows.value.find(w => w.id === id);
     if (!win) return;
@@ -130,5 +136,5 @@ export const useWindowsStore = defineStore('windows', () => {
     if (win) Object.assign(win, bounds);
   }
 
-  return { windows, activeId, activeWindow, open, close, minimize, toggleMaximize, activate, commitBounds };
+  return { windows, activeId, activeWindow, open, close, closeAll, minimize, toggleMaximize, activate, commitBounds };
 });

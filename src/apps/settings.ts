@@ -1,6 +1,6 @@
 ﻿// @ts-nocheck
 /* ===== apps/settings.ts ===== */
-import { Apps } from './registry';
+import { Apps } from './legacy-registry';
 import { XPChrome } from './chrome';
 import { DesktopState } from '../core/state';
 import { Atmosphere } from '../core/atmosphere';

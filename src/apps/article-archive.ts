@@ -1,6 +1,6 @@
 // @ts-nocheck
 /* ===== apps/article-archive.ts ===== */
-import { Apps } from './registry';
+import { Apps } from './legacy-registry';
 import { XPChrome } from './chrome';
 import { WindowManager } from '../core/window-manager';
 import { ARTICLES } from '../data/articles';

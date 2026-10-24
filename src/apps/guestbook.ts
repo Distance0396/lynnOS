@@ -1,6 +1,6 @@
 // @ts-nocheck
 /* ===== apps/guestbook.ts — 留言板（本地持久化） ===== */
-import { Apps } from './registry';
+import { Apps } from './legacy-registry';
 import { XPChrome } from './chrome';
 import { Atmosphere } from '../core/atmosphere';
 import { STORAGE_KEYS } from '../constants';

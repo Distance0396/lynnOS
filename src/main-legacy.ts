@@ -3,7 +3,7 @@ import './styles/main.css';
 import { Atmosphere } from './core/atmosphere';
 import { Desktop } from './core/desktop';
 import { Taskbar } from './core/taskbar';
-import { Apps } from './apps/registry';
+import { Apps } from './apps/legacy-registry';
 import { BootSequence } from './core/boot';
 
 // Import all app modules for their side effects (registration)

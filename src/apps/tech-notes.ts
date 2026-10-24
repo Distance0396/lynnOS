@@ -1,6 +1,6 @@
 ﻿// @ts-nocheck
 /* ===== apps/tech-notes.ts ===== */
-import { Apps } from './registry';
+import { Apps } from './legacy-registry';
 import { XPChrome } from './chrome';
 
 Apps.register({

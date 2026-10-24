@@ -1,6 +1,6 @@
 // @ts-nocheck
 /* ===== apps/music-collection.ts ===== */
-import { Apps } from './registry';
+import { Apps } from './legacy-registry';
 import { XPChrome } from './chrome';
 import { TRACKS } from '../data/tracks';
 

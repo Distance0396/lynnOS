@@ -1,6 +1,6 @@
 ﻿// @ts-nocheck
 /* ===== apps/my-computer.ts ===== */
-import { Apps } from './registry';
+import { Apps } from './legacy-registry';
 
 Apps.register({
   id: 'my-computer', title: '我的电脑', icon: 'assets/icons/xp/32/my-computer.png', width: 750, height: 500,

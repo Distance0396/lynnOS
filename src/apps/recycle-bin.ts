@@ -1,6 +1,6 @@
 // @ts-nocheck
 /* ===== apps/recycle-bin.ts ===== */
-import { Apps } from './registry';
+import { Apps } from './legacy-registry';
 import { XPChrome } from './chrome';
 import { Atmosphere } from '../core/atmosphere';
 
