@@ -32,6 +32,6 @@ function toggleSound() {
     <span id="tray-network" class="tray-icon" title="网络">
       <img src="/assets/icons/xp/16/network.png" alt="" width="16" height="16">
     </span>
-    <div id="tray-clock" @click.stop="emit('toggle-clock')">{{ time }}</div>
+    <div id="tray-clock" role="button" tabindex="0" @click.stop="emit('toggle-clock')" @keydown.enter.prevent="emit('toggle-clock')">{{ time }}</div>
   </div>
 </template>

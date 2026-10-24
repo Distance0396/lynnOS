@@ -11,12 +11,5 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: true,
-    rollupOptions: {
-      input: {
-        // legacy: 旧版 vanilla 入口（V5 阶段删除）
-        main: 'index.html',
-        legacy: 'legacy.html',
-      },
-    },
   },
 });

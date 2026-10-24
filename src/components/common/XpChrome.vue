@@ -8,7 +8,7 @@ interface ToolbarBtn {
   sep?: boolean;
 }
 
-// XP 资源管理器窗口骨架（对照旧 apps/chrome.ts），4 个保留应用共用
+// XP 资源管理器窗口骨架，4 个保留应用共用
 const props = defineProps<{
   address?: string;
   statusText?: string;

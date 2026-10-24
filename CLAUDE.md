@@ -2,9 +2,16 @@
 
 本项目是一个以 Microsoft Windows XP Luna 经典蓝色主题为视觉基础的桌面模拟式个人博客，并叠加克制的 Dreamcore 梦核氛围。
 
+技术栈为 Vue 3（SFC + `<script setup>`）+ Pinia + TypeScript（Vite 构建）。除本文件的 UI 规则外，还须遵守工程约定：
+
+1. 严格数据单向流：全局状态只存于 Pinia store 且只能在 action 内修改；组件间 props 向下、emit 向上；`components/` 下的展示组件禁止 import store。
+2. 页面级逻辑一律封装为 composables（`useXxx`，与组件同目录就近放置），副作用必须在 `onScopeDispose`/`onUnmounted` 清理。
+3. 注释简洁不冗余：每文件至多一行职责说明，只写「为什么」与约束，不写「是什么」；禁止注释掉的代码。
+4. 构建前必须通过 `vue-tsc` 类型检查与 ESLint（`npm run build`、`npm run lint`）。
+
 在开始任何 UI 开发、组件修改、样式重构或新页面开发之前，必须先阅读：
 
-`.agents/skills/windows-xp-ui/SKILL.md`
+`skills/windows-xp-ui/SKILL.md`
 
 这份文件是本项目的 UI 设计标准，不是参考建议。
 

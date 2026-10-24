@@ -129,3 +129,12 @@ body {
   user-select: none;
   -webkit-user-select: none;
 }
+
+/* --- 键盘焦点可见性（可访问性增强，XP 点线风格）--- */
+.desktop-icon:focus-visible,
+.start-item:focus-visible,
+.start-allprograms:focus-visible,
+#tray-clock:focus-visible {
+  outline: 1px dotted #fff;
+  outline-offset: -1px;
+}

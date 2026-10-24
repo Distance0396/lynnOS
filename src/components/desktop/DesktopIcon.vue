@@ -6,7 +6,16 @@ const emit = defineEmits<{ select: []; open: [] }>();
 </script>
 
 <template>
-  <div class="desktop-icon" :class="{ selected }" @click.stop="emit('select')" @dblclick.stop="emit('open')">
+  <div
+    class="desktop-icon"
+    :class="{ selected }"
+    role="button"
+    tabindex="0"
+    @click.stop="emit('select')"
+    @dblclick.stop="emit('open')"
+    @keydown.enter.prevent="emit('open')"
+    @keydown.space.prevent="emit('select')"
+  >
     <div class="icon-img"><img :src="APPS[appId]?.icon" alt=""></div>
     <div class="icon-label">{{ label }}</div>
   </div>

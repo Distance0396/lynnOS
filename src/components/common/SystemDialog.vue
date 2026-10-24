@@ -6,6 +6,7 @@ const props = defineProps<{ dialog: ActiveDialog }>();
 const store = useDialogsStore();
 const root = ref<HTMLElement | null>(null);
 const pos = ref<{ x: number; y: number } | null>(null);
+const okButton = ref<HTMLButtonElement | null>(null);
 
 // 图标仅接受图片路径，其余回退到 help.png（与旧 dialogIconImg 一致）
 const iconSrc = ref('');
@@ -22,6 +23,8 @@ onMounted(() => {
     x: Math.max(0, Math.round((vw - el.offsetWidth) / 2)),
     y: Math.max(0, Math.round((vh - el.offsetHeight) / 2)),
   };
+  // 焦点落「确定」，Enter 可直接关闭
+  okButton.value?.focus();
 });
 
 let startX = 0;
@@ -58,7 +61,14 @@ onScopeDispose(() => {
 </script>
 
 <template>
-  <div ref="root" class="sys-dialog" :style="pos ? { left: `${pos.x}px`, top: `${pos.y}px` } : undefined">
+  <div
+    ref="root"
+    class="sys-dialog"
+    role="dialog"
+    aria-modal="true"
+    :aria-label="dialog.title || '系统提示'"
+    :style="pos ? { left: `${pos.x}px`, top: `${pos.y}px` } : undefined"
+  >
     <div class="sys-dialog-titlebar" @mousedown="onTitlebarMousedown">
       <span class="sys-dialog-icon"><img :src="iconSrc" alt="" width="16" height="16"></span>
       <span class="sys-dialog-title">{{ dialog.title || '系统提示' }}</span>
@@ -70,7 +80,7 @@ onScopeDispose(() => {
       <div class="sys-dialog-text" v-html="dialog.text"></div>
     </div>
     <div class="sys-dialog-actions">
-      <button class="xp-btn primary sys-dialog-ok" @click="store.close(dialog.id)">确定</button>
+      <button ref="okButton" class="xp-btn primary sys-dialog-ok" @click="store.close(dialog.id)">确定</button>
     </div>
   </div>
 </template>
