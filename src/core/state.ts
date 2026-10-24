@@ -43,7 +43,6 @@ export const state = {
     animationsEnabled: true,
     iconsVisible: true,
   } as Settings,
-  iconPositions: {} as Record<string, { row: number; col: number }>,
 };
 
 function allocZ() { return ++_nextZ; }
