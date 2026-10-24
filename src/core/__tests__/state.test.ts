@@ -1,5 +1,5 @@
 /* ===== state.test.ts — DesktopState (store) unit tests ===== */
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { DesktopState } from '../state';
 
 describe('DesktopState', () => {
@@ -85,7 +85,7 @@ describe('DesktopState', () => {
 
     it('sets activeWinId', () => {
       const w1 = DesktopState.addWindow({ appId: 'a', title: 'A', icon: '📄' });
-      const w2 = DesktopState.addWindow({ appId: 'b', title: 'B', icon: '📄' });
+      DesktopState.addWindow({ appId: 'b', title: 'B', icon: '📄' });
       DesktopState.activateWindow(w1.id);
       expect(DesktopState.state.activeWinId).toBe(w1.id);
     });

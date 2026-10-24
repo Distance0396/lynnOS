@@ -35,7 +35,7 @@ let _audioCtx: AudioContext | null = null;
 function getAudioCtx(): AudioContext | null {
   if (!_audioCtx) {
     try { _audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)(); }
-    catch (e) { /* no audio support */ }
+    catch { /* no audio support */ }
   }
   return _audioCtx;
 }

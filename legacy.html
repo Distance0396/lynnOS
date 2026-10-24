@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Somewhere.exe (Legacy)</title>
+</head>
+<body>
+  <div id="desktop-root">
+    <!-- Wallpaper -->
+    <div id="wallpaper"></div>
+    <div id="wallpaper-overlay"></div>
+    <div id="film-grain"></div>
+    <div id="vignette"></div>
+
+    <!-- Desktop icon area -->
+    <div id="desktop-icons"></div>
+
+    <!-- System dialog container -->
+    <div id="system-dialog-container"></div>
+
+    <!-- Clock panel -->
+    <div id="clock-panel" hidden></div>
+
+    <!-- Window container -->
+    <div id="window-container"></div>
+
+    <!-- Taskbar -->
+    <div id="taskbar">
+      <button id="start-btn" aria-label="开始菜单">
+        <img src="assets/start.png" alt="start">
+      </button>
+      <div id="task-buttons"></div>
+      <div id="system-tray">
+        <span id="tray-volume" class="tray-icon" title="音量"><img src="assets/icons/xp/16/volume.png" alt="" width="16" height="16"></span>
+        <span id="tray-network" class="tray-icon" title="网络"><img src="assets/icons/xp/16/network.png" alt="" width="16" height="16"></span>
+        <div id="tray-clock"></div>
+      </div>
+    </div>
+
+    <!-- Start Menu -->
+    <div id="start-menu" hidden>
+      <div class="start-header">
+        <span class="start-username">Lynn</span>
+        <div class="start-avatar"><img src="assets/icons/xp/48/user-key.png" alt=""></div>
+      </div>
+      <div class="start-body">
+        <div class="start-col-left">
+          <div id="start-menu-left"></div>
+          <div class="start-hsep"></div>
+          <div class="start-allprograms" id="start-all-programs">
+            <span class="ap-icon"><img src="assets/icons/xp/32/windows-logo.png" alt=""></span>
+            <span class="ap-label">所有程序</span>
+            <span class="ap-arrow">&#9654;</span>
+          </div>
+        </div>
+        <div class="start-col-right">
+          <div id="start-menu-right"></div>
+        </div>
+      </div>
+      <div id="start-menu-bottom">
+        <button class="start-bottom-btn" data-action="home">
+          <img src="assets/icons/xp/16/users-group.png" alt=""> 返回欢迎页
+        </button>
+        <button class="start-bottom-btn" data-action="sleep">
+          <img src="assets/icons/xp/16/shutdown.png" alt=""> 进入睡眠
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main-legacy.ts"></script>
+</body>
+</html>

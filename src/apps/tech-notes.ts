@@ -17,7 +17,7 @@ Apps.register({
     function renderSidebar() {
       sidebar.innerHTML = '';
       const catSection = XPChrome.createSidebarSection('笔记分类',
-        categories.map((c, i) => ({
+        categories.map((c) => ({
           label: c,
           icon: 'assets/icons/xp/16/notepad-config.png',
           app: ''

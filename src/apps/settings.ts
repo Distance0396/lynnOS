@@ -9,7 +9,6 @@ import { STORAGE_KEYS } from '../constants';
 Apps.register({
   id: 'settings', title: '系统设置', icon: 'assets/icons/xp/32/settings-gear.png', width: 580, height: 500,
   renderContent(body) {
-    const s = DesktopState.state.settings;
     const wps = Atmosphere.WALLPAPERS;
 
     const { content, statusbar } = XPChrome.createXPChrome(body, {

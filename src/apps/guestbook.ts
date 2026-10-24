@@ -17,7 +17,7 @@ function loadMessages() {
     const list = JSON.parse(raw);
     if (!Array.isArray(list)) return { list: DEMO_MESSAGES.slice(), persist: true };
     return { list, persist: true };
-  } catch (e) {
+  } catch {
     return { list: DEMO_MESSAGES.slice(), persist: false };
   }
 }
@@ -26,7 +26,7 @@ function saveMessages(list) {
   try {
     localStorage.setItem(STORAGE_KEYS.guestbook, JSON.stringify(list));
     return true;
-  } catch (e) {
+  } catch {
     return false;
   }
 }
@@ -52,7 +52,7 @@ Apps.register({
 
     const store = loadMessages();
     let persist = store.persist;
-    let messages = store.list.slice();
+    const messages = store.list.slice();
 
     content.style.cssText = 'padding:16px;display:flex;flex-direction:column;height:100%;';
 
